@@ -37,9 +37,9 @@ async def root():
     return {"message": "Hello World"}
 
 
-@app.post("/submit/")
-async def submit(input_text: str = Form(...)):
-    return openai.get_messages(input_text)
+@app.post("/chat")
+async def submit(question_text: str = Form(...)):
+    return openai.get_messages(question_text)
 
 
 @app.post("/multiple")
@@ -59,4 +59,4 @@ async def multiple(input_text: str = Form(...), img: UploadFile = File(...)):
     return openai.generate_from_TxtandImg(input_text, img)
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=5049)
+    uvicorn.run(app, host="0.0.0.0", port=5049)
